@@ -1,0 +1,40 @@
+\documentclass[journal]{IEEEtran}
+\usepackage{pgf}
+
+\begin{document}
+\title{Bare Demo of IEEEtran.cls\\ for IEEE Journals}
+
+\author{Michael~Shell,~\IEEEmembership{Member,~IEEE,}
+        John~Doe,~\IEEEmembership{Fellow,~OSA,}
+        and~Jane~Doe,~\IEEEmembership{Life~Fellow,~IEEE}% <-this % stops aspace
+\thanks{M. Shell was with the Department
+of Electrical and Computer Engineering, Georgia Institute of Technology,Atlanta,
+GA, 30332 USA e-mail: (see http://www.michaelshell.org/contact.html).}%<-this % stops a space
+\thanks{J. Doe and J. Doe are with Anonymous University.}% <-this % stops aspace
+\thanks{Manuscript received April 19, 2005; revised August 26, 2015.}}
+
+
+% make the title area
+\maketitle
+
+% As a general rule, do not put math, special symbols or citations
+% in the abstract or keywords.
+\begin{abstract}
+The abstract goes here.
+\end{abstract}
+
+% Note that keywords are not normally used for peerreview papers.
+\begin{IEEEkeywords}
+IEEE, IEEEtran, journal, \LaTeX, paper, template.
+\end{IEEEkeywords}
+
+\section{Introduction}
+Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un peintre anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.
+
+\begin{figure}[htbp]
+    \centering
+    \input{output.pgf}
+    \caption{A simple EMA plot.\label{fig:ema1} \the\textwidth}
+\end{figure}
+
+\end{document}
