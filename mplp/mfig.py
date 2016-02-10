@@ -162,7 +162,7 @@ class Mfig(object):
         """Return the color palette
         Returns
         -------
-            return a list of colors palette  
+            return a list of colors palette
         """
         return self.colors_cyl.mpl_colors
 
@@ -180,7 +180,7 @@ class Mfig(object):
         self.fig.savefig('{}.pdf'.format(filename), dpi=300, transparent=True)
 
     def set_matplotlib_parameters(self):
-        """Define and setup matplotlib plotting styles
+        """Setup the matplotlib's rc parameters
         """
 
         (fontsize, titlesize, linewidth) = self.get_sizes()
