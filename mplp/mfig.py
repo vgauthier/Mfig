@@ -34,7 +34,12 @@ class Mfig(object):
 
     colors_cyl = Paired_10
 
-    def __init__(self, format=None, scale=0.9, formatting='landscape', colors=None):
+    def __init__(self,
+                 format=None,
+                 scale=0.9,
+                 formatting='landscape',
+                 colors=None,
+                 fontsize=None):
         """Constructor
 
         Parameters
@@ -53,6 +58,9 @@ class Mfig(object):
             the default color palette is the 'Paired_10'
             .. _See the palettable documentation for more information:
             https://jiffyclub.github.io/palettable/
+
+        fontsize : Int, Optional
+            fontsize of the tick label, the axis label and the legend label
         """
 
         if format == "double":
@@ -60,6 +68,10 @@ class Mfig(object):
             self.sizes = {"fontsize": 10, "titlesize": 11, "linewidth": 1.3}
         elif format == "single":
             self.sizes = {"fontsize": 15, "titlesize": 14, "linewidth": 1.6}
+
+        # overwrite the fontsize parameter if passed as argument
+        if fontsize:
+            self.sizes["fontsize"] = fontsize
         self.set_figsize(formatting=formatting, scale=scale)
 
         if colors:
