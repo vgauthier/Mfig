@@ -228,6 +228,8 @@ class Mfig(object):
         matplotlib.rcParams['ytick.minor.size'] = 2 * linewidth
         matplotlib.rcParams['text.usetex'] = True
         matplotlib.rcParams['pgf.texsystem'] = 'pdflatex'
+        # Only on point is allowed in the legend
+        matplotlib.rcParams['legend.numpoints'] = 1
         matplotlib.rcParams['font.serif'] = ['Computer Modern Roman']
         matplotlib.rcParams['font.sans-serif'] = ['Helvetica']
         matplotlib.rcParams['font.monospace'] = ['Computer Modern Typewriter']
