@@ -178,18 +178,21 @@ class Mfig(object):
         """
         return self.colors_cyl.mpl_colors
 
-    def savefig(self, filename):
-        """Save the figure to a '*.pdf' and a '*.pgf' file
+    def savefig(self, filename, pgf=True):
+        """Generate a vector figure compile into a '*.pdf' and a '*.pgf' file
 
         Parameters
         ----------
         filename : String
             Filename of the picture
+        filename : Boolean, optional
+            Generate a PGF file
         """
 
         self.fig.tight_layout()
         self.fig.savefig('{}.pgf'.format(filename), dpi=300, transparent=True)
-        self.fig.savefig('{}.pdf'.format(filename), dpi=300, transparent=True)
+        if pgf:
+            self.fig.savefig('{}.pdf'.format(filename), dpi=300, transparent=True)
 
     def set_matplotlib_parameters(self):
         """Setup the matplotlib's rc parameters
