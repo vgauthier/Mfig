@@ -124,7 +124,7 @@ class Mfig(object):
                 self.sizes['titlesize'],
                 self.sizes['linewidth'])
 
-    def subplots(self, nrows=1, ncols=1, sharex=False, sharey=False):
+    def subplots(self, nrows=1, ncols=1, sharex=False, sharey=False, figsize=None):
         """Create a figure with a set of subplots already made.
 
         Parameters
@@ -149,6 +149,8 @@ class Mfig(object):
             If “row”, each subplot row will share a Y axis and the y tick labels on all but
             the first column will have visible set to False. If “col”, each subplot column
             will share a Y axis.
+        figsize : None or tulpe(w, h), optimal
+            image dimension width, height
 
         Returns
         -------
@@ -157,6 +159,8 @@ class Mfig(object):
         import matplotlib.pylab as plt
 
         w, h = self.get_figsize()
+        if figsize is not None:
+            w, h = figsize
         self.fig, self.ax = plt.subplots(nrows,
                                          ncols,
                                          sharex, sharey,
@@ -178,7 +182,7 @@ class Mfig(object):
         """
         return self.colors_cyl.mpl_colors
 
-    def savefig(self, filename, pgf=True):
+    def savefig(self, filename, pgf=False):
         """Generate a vector figure compile into a '*.pdf' and a '*.pgf' file
 
         Parameters
@@ -190,9 +194,9 @@ class Mfig(object):
         """
 
         self.fig.tight_layout()
-        self.fig.savefig('{}.pgf'.format(filename), dpi=300, transparent=True)
+        self.fig.savefig('{}.pdf'.format(filename), dpi=300, transparent=True)
         if pgf:
-            self.fig.savefig('{}.pdf'.format(filename), dpi=300, transparent=True)
+            self.fig.savefig('{}.pgf'.format(filename), dpi=300, transparent=True)
 
     def set_matplotlib_parameters(self):
         """Setup the matplotlib's rc parameters
