@@ -182,7 +182,7 @@ class Mfig(object):
         """
         return self.colors_cyl.mpl_colors
 
-    def savefig(self, filename, pgf=False):
+    def savefig(self, filename, pgf=False, dpi=300):
         """Generate a vector figure compile into a '*.pdf' and a '*.pgf' file
 
         Parameters
@@ -194,9 +194,9 @@ class Mfig(object):
         """
 
         self.fig.tight_layout()
-        self.fig.savefig('{}.pdf'.format(filename), dpi=300, transparent=True)
+        self.fig.savefig('{}.pdf'.format(filename), dpi=dpi, transparent=True)
         if pgf:
-            self.fig.savefig('{}.pgf'.format(filename), dpi=300, transparent=True)
+            self.fig.savefig('{}.pgf'.format(filename), dpi=dpi, transparent=True)
 
     def set_matplotlib_parameters(self):
         """Setup the matplotlib's rc parameters
@@ -218,13 +218,14 @@ class Mfig(object):
         }
 
         matplotlib.rcParams.update(params)
+        # Size
         matplotlib.rcParams['lines.linewidth'] = linewidth
         matplotlib.rcParams['patch.linewidth'] = linewidth
         matplotlib.rcParams['axes.linewidth'] = linewidth
         matplotlib.rcParams['axes.titlesize'] = titlesize
         matplotlib.rcParams['grid.linewidth'] = linewidth
         matplotlib.rcParams['font.size'] = fontsize
-        matplotlib.rcParams['font.family'] = 'sans-serif'
+        # Ticks
         matplotlib.rcParams['xtick.major.width'] = linewidth - 0.1
         matplotlib.rcParams['xtick.major.size'] = 4 * linewidth
         matplotlib.rcParams['xtick.minor.width'] = linewidth - 0.1
@@ -233,13 +234,18 @@ class Mfig(object):
         matplotlib.rcParams['ytick.major.size'] = 4 * linewidth
         matplotlib.rcParams['ytick.minor.width'] = linewidth - 0.1
         matplotlib.rcParams['ytick.minor.size'] = 2 * linewidth
+        # Latex
         matplotlib.rcParams['text.usetex'] = True
         matplotlib.rcParams['pgf.texsystem'] = 'pdflatex'
+        matplotlib.rcParams['text.latex.preamble']=[r"\usepackage{lmodern}"]
         # Only on point is allowed in the legend
         matplotlib.rcParams['legend.numpoints'] = 1
-        matplotlib.rcParams['font.serif'] = ['Computer Modern Roman']
-        matplotlib.rcParams['font.sans-serif'] = ['Helvetica']
-        matplotlib.rcParams['font.monospace'] = ['Computer Modern Typewriter']
+        # Font 
+        matplotlib.rcParams['font.family'] = 'lmodern'
+        #matplotlib.rcParams['font.serif'] = ['Computer Modern Roman', 'Times', 'Palatino', 'New Century Schoolbook', 'Bookman']
+        #matplotlib.rcParams['font.sans-serif'] = ['Helvetica', 'Computer Modern Sans serif', 'Avant Garde']
+        #matplotlib.rcParams['font.monospace'] = ['Computer Modern Typewriter', 'Courier']
+        #matplotlib.rcParams['font.cursive'] = ' Zapf Chancery'
         # CMAP color palette
         matplotlib.rcParams['image.cmap'] = 'viridis'
         # Line color Pallete
