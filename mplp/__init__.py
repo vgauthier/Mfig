@@ -12,5 +12,7 @@ __email__ = "vgauthier@luxbulb.org"
 __all__ = []
 
 from . mfig import *
+from . utils import *
 
 __all__ += mfig.__all__
+__all__ += utils.__all__
