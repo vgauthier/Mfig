@@ -6,3 +6,4 @@ mplp/.DS_Store
 tests/.DS_Store
 tests/.nbgrader.log
 tests/*.pdf
+tests/*.pgf

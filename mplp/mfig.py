@@ -1,4 +1,31 @@
 # -*- coding: utf-8 -*-
+# ------------------------------------------------------------------------------
+# Copyright (c) 2017, Vincent Gauthier, Institut Mines Telecom/Telecom SudParis.
+# All rights reserved.                                                          
+#                                                                               
+# Redistribution and use in source and binary forms, with or without            
+# modification, are permitted provided that the following conditions are met:   
+#                                                                               
+# * Redistributions of source code must retain the above copyright notice, this 
+#   list of conditions and the following disclaimer.                            
+#                                                                               
+# * Redistributions in binary form must reproduce the above copyright notice,   
+#   this list of conditions and the following disclaimer in the documentation   
+#   and/or other materials provided with the distribution.                      
+#                                                                               
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS'   
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE     
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE  
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL    
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR    
+# SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER    
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, 
+# OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.          
+# ------------------------------------------------------------------------------
+
+
 __author__ = '''\n'''.join(['Vincent Gauthier <vgauthier@luxbulb.org>'])
 __all__ = ['Mfig']
 __license__ = "MIT"
@@ -188,7 +215,7 @@ class Mfig(object):
         """
         return self.colors_cyl.mpl_colors
 
-    def savefig(self, filename, pgf=False):
+    def savefig(self, filename, pgf=False, dpi=300):
         """Generate a vector figure compile into a '*.pdf' and a '*.pgf' file
 
         Parameters
@@ -200,9 +227,9 @@ class Mfig(object):
         """
 
         self.fig.tight_layout()
-        self.fig.savefig('{}.pdf'.format(filename), dpi=300, transparent=True)
+        self.fig.savefig('{}.pdf'.format(filename), dpi=dpi, transparent=True)
         if pgf:
-            self.fig.savefig('{}.pgf'.format(filename), dpi=300, transparent=True)
+            self.fig.savefig('{}.pgf'.format(filename), dpi=dpi, transparent=True)
 
     def set_matplotlib_parameters(self):
         """Setup the matplotlib's rc parameters
@@ -224,13 +251,14 @@ class Mfig(object):
         }
 
         matplotlib.rcParams.update(params)
+        # Size
         matplotlib.rcParams['lines.linewidth'] = linewidth
         matplotlib.rcParams['patch.linewidth'] = linewidth
         matplotlib.rcParams['axes.linewidth'] = linewidth
         matplotlib.rcParams['axes.titlesize'] = titlesize
         matplotlib.rcParams['grid.linewidth'] = linewidth
         matplotlib.rcParams['font.size'] = fontsize
-        matplotlib.rcParams['font.family'] = 'sans-serif'
+        # Ticks
         matplotlib.rcParams['xtick.major.width'] = linewidth - 0.1
         matplotlib.rcParams['xtick.major.size'] = 4 * linewidth
         matplotlib.rcParams['xtick.minor.width'] = linewidth - 0.1
@@ -239,13 +267,14 @@ class Mfig(object):
         matplotlib.rcParams['ytick.major.size'] = 4 * linewidth
         matplotlib.rcParams['ytick.minor.width'] = linewidth - 0.1
         matplotlib.rcParams['ytick.minor.size'] = 2 * linewidth
+        # Latex
         matplotlib.rcParams['text.usetex'] = True
         matplotlib.rcParams['pgf.texsystem'] = 'pdflatex'
+        matplotlib.rcParams['text.latex.preamble']=[r"\usepackage{lmodern}"]
         # Only on point is allowed in the legend
         matplotlib.rcParams['legend.numpoints'] = 1
-        matplotlib.rcParams['font.serif'] = ['Computer Modern Roman']
-        matplotlib.rcParams['font.sans-serif'] = ['Helvetica']
-        matplotlib.rcParams['font.monospace'] = ['Computer Modern Typewriter']
+        # Font 
+        matplotlib.rcParams['font.family'] = 'lmodern'
         # CMAP color palette
         matplotlib.rcParams['image.cmap'] = 'viridis'
         # Line color Pallete
