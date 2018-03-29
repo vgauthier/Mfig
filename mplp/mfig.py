@@ -215,21 +215,22 @@ class Mfig(object):
         """
         return self.colors_cyl.mpl_colors
 
-    def savefig(self, filename, pgf=False, dpi=300):
+    def savefig(self, filename, fmt="pdf", dpi=300):
         """Generate a vector figure compile into a '*.pdf' and a '*.pgf' file
 
         Parameters
         ----------
         filename : String
             Filename of the picture
+        fmt: String, Optional 
+            File extension, supported file format are "pdf", "pgf", "png", "jpg"
         filename : Boolean, optional
             Generate a PGF file
         """
-
+        if fmt not in ["pdf", "pgf", "png", "jpg"]:
+            raise ValueError('File extension ' + fmt + " is not supported")
         self.fig.tight_layout()
-        self.fig.savefig('{}.pdf'.format(filename), dpi=dpi, transparent=True)
-        if pgf:
-            self.fig.savefig('{}.pgf'.format(filename), dpi=dpi, transparent=True)
+        self.fig.savefig('{}.{}'.format(filename, fmt), dpi=dpi, transparent=True)
 
     def set_matplotlib_parameters(self):
         """Setup the matplotlib's rc parameters
