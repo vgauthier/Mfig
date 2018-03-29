@@ -68,8 +68,10 @@ class Mfig(object):
         if format == "double":
             scale = 0.5
             self.sizes = {"fontsize": 10, "titlesize": 11, "linewidth": 1.3}
-        elif format == "single":
+        elif (format == "single") and (column == 1):
             self.sizes = {"fontsize": 15, "titlesize": 14, "linewidth": 1.6}
+        elif (format == "single") and (column > 1):
+            self.sizes = {"fontsize": 10, "titlesize": 14, "linewidth": 1.6}
 
         # overwrite the fontsize parameter if passed as argument
         if fontsize:
