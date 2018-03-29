@@ -1,3 +1,6 @@
 .ipynb_checkpoints/*
 tests/.ipynb_checkpoints/*
 mplp/__pycache__/*
+.DS_Store
+mplp/.DS_Store
+tests/.DS_Store

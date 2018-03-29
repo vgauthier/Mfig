@@ -38,6 +38,7 @@ class Mfig(object):
                  format=None,
                  scale=0.9,
                  formatting='landscape',
+                 column=1,
                  colors=None,
                  fontsize=None):
         """Constructor
@@ -54,6 +55,8 @@ class Mfig(object):
         formatting: String, Optional,
             either 'landscape' or square, default is 'landscape'
 
+        column: Int, Optional 
+
         colors : palettable Object, Optional
             the default color palette is the 'Paired_10'
             .. _See the palettable documentation for more information:
@@ -62,7 +65,6 @@ class Mfig(object):
         fontsize : Int, Optional
             fontsize of the tick label, the axis label and the legend label
         """
-
         if format == "double":
             scale = 0.5
             self.sizes = {"fontsize": 10, "titlesize": 11, "linewidth": 1.3}
@@ -72,7 +74,7 @@ class Mfig(object):
         # overwrite the fontsize parameter if passed as argument
         if fontsize:
             self.sizes["fontsize"] = fontsize
-        self.set_figsize(formatting=formatting, scale=scale)
+        self.set_figsize(formatting=formatting, scale=scale, column=column)
 
         if colors:
             self.colors_cyl = colors
@@ -80,7 +82,7 @@ class Mfig(object):
         # set matplotlib parameters
         self.set_matplotlib_parameters()
 
-    def set_figsize(self, formatting, scale):
+    def set_figsize(self, formatting, scale, column=1):
         """
         Parameters
         ----------
@@ -89,6 +91,8 @@ class Mfig(object):
 
         scale: float, Optional
             default is 0.9
+        
+        column: int, Optional
 
         .. _copy from Bennett Kanuka blog:
         http://bkanuka.com/articles/native-latex-plots/
@@ -97,7 +101,7 @@ class Mfig(object):
         inches_per_pt = 1.0 / 72.27                         # Convert pt to inch
         golden_mean = (np.sqrt(5.0) - 1.0) / 2.0            # Aesthetic ratio (you could change this)
         fig_width = fig_width_pt * inches_per_pt * scale    # width in inches
-        fig_height = fig_width * golden_mean                # height in inches
+        fig_height = (1/column) *fig_width * golden_mean    # height in inches
         if formatting == 'landscape':
             self.fig_size = (fig_width, fig_height)
         else:
