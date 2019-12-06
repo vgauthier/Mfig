@@ -238,6 +238,7 @@ class Mfig(object):
 
         (fontsize, titlesize, linewidth) = self.get_sizes()
 
+        # r'\usepackage{lmodern}'
         params = {
             'text.latex.preamble': [
                 r'\usepackage{sfmath}',
@@ -271,11 +272,12 @@ class Mfig(object):
         # Latex
         matplotlib.rcParams['text.usetex'] = True
         matplotlib.rcParams['pgf.texsystem'] = 'pdflatex'
-        matplotlib.rcParams['text.latex.preamble']=[r"\usepackage{lmodern}"]
+
         # Only on point is allowed in the legend
         matplotlib.rcParams['legend.numpoints'] = 1
         # Font 
-        matplotlib.rcParams['font.family'] = 'lmodern'
+        matplotlib.rcParams['font.family'] = 'cm'
+        #matplotlib.rcParams['font.family'] = 'lmodern'
         # CMAP color palette
         matplotlib.rcParams['image.cmap'] = 'viridis'
         # Line color Pallete
