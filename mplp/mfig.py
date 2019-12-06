@@ -126,11 +126,11 @@ class Mfig(object):
         .. _copy from Bennett Kanuka blog:
         http://bkanuka.com/articles/native-latex-plots/
         """
-        fig_width_pt = 516.0                                # Get this from LaTeX using \the\textwidth
-        inches_per_pt = 1.0 / 72.27                         # Convert pt to inch
-        golden_mean = (np.sqrt(5.0) - 1.0) / 2.0            # Aesthetic ratio (you could change this)
-        fig_width = fig_width_pt * inches_per_pt * scale    # width in inches
-        fig_height = (1/column) *fig_width * golden_mean    # height in inches
+        fig_width_pt = 516.0                                            # Get this from LaTeX using \the\textwidth
+        inches_per_pt = 1.0 / 72.27                                     # Convert pt to inch
+        golden_mean = (np.sqrt(5.0) - 1.0) / 2.0                        # Aesthetic ratio (you could change this)
+        fig_width = fig_width_pt * inches_per_pt * scale                # width in inches
+        fig_height = (1/column) * fig_width * golden_mean               # height in inches
         if formatting == 'landscape':
             self.fig_size = (fig_width, fig_height)
         else:
